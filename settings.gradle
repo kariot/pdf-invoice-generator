@@ -1,0 +1,3 @@
+include ':invoicegenerator'
+include ':app'
+rootProject.name = "Invoice Generator"
