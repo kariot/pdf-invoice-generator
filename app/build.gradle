@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -43,5 +46,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     api project(':invoicegenerator')
-    implementation 'com.karumi:dexter:6.0.0'
+    implementation 'com.karumi:dexter:6.0.0' // Dexter for runtime permissions
+    implementation 'com.github.dhaval2404:colorpicker:2.0'
+
+
 }
