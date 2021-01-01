@@ -18,7 +18,7 @@ import java.io.File
 import java.io.FileOutputStream
 
 class InvoiceGenerator(private val context: Context) {
-
+    private val TAG = "InvoiceGenerator"
     private var colorPrimary = BaseColor(40, 116, 240)
     private val FONT_SIZE_DEFAULT = 12f
     private val FONT_SIZE_SMALL = 8f
@@ -42,7 +42,7 @@ class InvoiceGenerator(private val context: Context) {
     private val BILL_DETAILS_TOP_PADDING = 80f
     private var tableColumnWidths = floatArrayOf(1.5f, 1f, 1f, .6f, 1.1f)
     private var invoiceCurrency = "Rs."
-    private var invoiceLogoId = R.drawable.gear
+    private var invoiceLogoId = R.drawable.invoice_icon
     private var headerDataSource: ModelInvoiceHeader = ModelInvoiceHeader()
     private var invoiceInfoDataSource: ModelInvoiceInfo = ModelInvoiceInfo()
     private var invoiceTableHeaderDataSource: ModelTableHeader = ModelTableHeader()
@@ -103,8 +103,13 @@ class InvoiceGenerator(private val context: Context) {
         this.invoiceFooterDataSource = invoiceFooterDataSource
     }
 
+    fun setCurrency(currency: String) {
+        if (currency.isEmpty()) return
+        invoiceCurrency = currency
+        Log.d(TAG,"Currency $currency")
+    }
 
-    fun generatePDF(filename : String): Uri {
+    fun generatePDF(filename: String): Uri {
         val doc = Document(PageSize.A4, 0f, 0f, 0f, 0f)
         val outPath =
             context.getExternalFilesDir(null)
@@ -143,7 +148,7 @@ class InvoiceGenerator(private val context: Context) {
     private fun initInvoiceHeader(doc: Document) {
         val d = ContextCompat.getDrawable(context, invoiceLogoId)
         val bitDw = d as BitmapDrawable
-        val bmp = bitDw.bitmap
+        val bmp = Bitmap.createScaledBitmap(bitDw.bitmap,50,50,false)
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val image = Image.getInstance(stream.toByteArray())
@@ -402,7 +407,7 @@ class InvoiceGenerator(private val context: Context) {
     }
 
     private fun initTableHeader(doc: Document) {
-        doc.add(Paragraph("\n\n\n\n\n\n")) //adds blank line to place table header below the line
+        doc.add(Paragraph("\n\n\n\n\n")) //adds blank line to place table header below the line
 
         val titleTable = PdfPTable(5)
         titleTable.isLockedWidth = true

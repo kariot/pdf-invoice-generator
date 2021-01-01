@@ -90,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="+91 8547984369"
+                android:id="@+id/edt_phone"
                 android:inputType="phone"
                 android:hint="Phone" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -102,6 +103,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/edt_email"
                 android:text="sreeharikariot@gmail.com"
                 android:inputType="textEmailAddress"
                 android:hint="Email Address" />
@@ -116,6 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Website"
+                android:id="@+id/edt_website"
                 android:text="www.kariot.me"
                 android:inputType="textWebEmailAddress"
                 />
@@ -137,6 +140,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 1"
+                android:id="@+id/edt_invoice_address1"
                 android:hint="Address Line 1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,6 +153,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 2"
+                android:id="@+id/edt_invoice_address2"
                 android:hint="Address Line 2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -161,6 +166,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 3"
+                android:id="@+id/edt_invoice_address3"
                 android:hint="Address Line 3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -180,6 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Customer Name"
+                android:id="@+id/edt_customer_name"
                 android:text="Sreehari K"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -193,6 +200,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 1"
+                android:id="@+id/edt_customer_address1"
                 android:hint="Customer Address Line 1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -205,6 +213,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 2"
+                android:id="@+id/edt_customer_address2"
                 android:hint="Customer Address Line 2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -217,6 +226,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Address Line 3"
+                android:id="@+id/edt_customer_address3"
                 android:hint="Customer Address Line 3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -229,6 +239,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="INV0123456"
+                android:id="@+id/edt_invoice_number"
                 android:hint="Invoice Number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -240,6 +251,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/edt_invoice_date"
+                android:text="01/01/2021"
                 android:hint="Date of issue" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -252,6 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="123"
+                android:id="@+id/edt_invoice_amount"
                 android:inputType="numberSigned"
                 android:hint="Invoice Total Amount" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -272,6 +286,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description"
+                android:id="@+id/edt_header_1"
                 android:hint="Column 1"
 
                 />
@@ -286,6 +301,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Quantity"
+                android:id="@+id/edt_header_2"
                 android:hint="Column 2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -298,6 +314,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Dis. Amount"
+                android:id="@+id/edt_header_3"
                 android:hint="Column 3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -310,6 +327,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="VAT %"
+                android:id="@+id/edt_header_4"
                 android:hint="Column 4" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -322,6 +340,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Net Amount"
+                android:id="@+id/edt_header_5"
                 android:hint="Column 5" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -341,6 +360,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Item 1"
+                android:id="@+id/edt_table_item_1"
                 android:hint="Item 1" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -353,6 +373,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Description 1"
+                android:id="@+id/edt_table_item_1_description"
                 android:hint="Item 1 Description"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -366,6 +387,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="101"
+                android:id="@+id/edt_table_item_2"
                 android:hint="Item 2" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -378,6 +400,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="123"
+                android:id="@+id/edt_table_item_3"
                 android:hint="Item 3" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -390,6 +413,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="90"
+                android:id="@+id/edt_table_item_4"
                 android:hint="Item 4" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -402,6 +426,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1010"
+                android:id="@+id/edt_table_item_5"
                 android:hint="Item 5" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -421,6 +446,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="123"
+                android:id="@+id/edt_sub_total"
                 android:hint="Sub Total" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -432,6 +458,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
             android:text="50"
+                android:id="@+id/edt_tax_total"
                 android:layout_height="wrap_content"
                 android:hint="Tax Total" />
 
@@ -446,6 +473,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="200"
+                android:id="@+id/edt_grand_total"
                 android:hint="Grad Total" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -464,7 +492,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Thank Your Business"
+                android:text="Thank For Your Business"
+                android:id="@+id/edt_footer_message"
                 android:hint="Footer Messgae" />
         </com.google.android.material.textfield.TextInputLayout>
 
