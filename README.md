@@ -1,17 +1,36 @@
 # pdf-invoice-generator
 
-add jitpack to your project
+[![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
+
+# PDF Invoice Generator
+Android Search Dialog Library
+
+# Setup
+## 1. Provide the gradle dependency
+
+Add it in your root build.gradle at the end of repositories:
 ```
-allprojects {
- repositories {
-   maven { url 'https://jitpack.io' }
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
 		}
-}
-  ```
-add library dependency
+	}
 ```
-implementation 'com.github.kariot:pdf-invoice-generator:1.0.0'
+
+Add the gradle dependency to your `app` module `build.gradle` file:
+
 ```
+	dependencies {
+	        implementation 'com.github.kariot:pdf-invoice-generator:1.0.0'
+	}
+
+```
+## 2. Request Permission
+
+## 3. Initialization of Data Sources
+## 4. Generate PDF
+
 Generate pdf invoice 
 ```
 val pdfGenerator = InvoiceGenerator(this).apply {
@@ -30,4 +49,6 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 
         val fileUri = pdfGenerator.generatePDF("${(0..99999).random()}.pdf")
 ```
+
+
   
