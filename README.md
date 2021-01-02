@@ -1,7 +1,7 @@
 [![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
 
 # PDF Invoice Generator
-###Android Search Dialog Library
+### Android Search Dialog Library
 
 This library uses iText internally to generate PDF file. Custom layout has been implemented to get the look and purpose of an invoice
 
