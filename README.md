@@ -51,5 +51,6 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 ```
 ## Sample
 <img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif" width="300">
+<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice.jpeg" width="300">
 
   
