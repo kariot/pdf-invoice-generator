@@ -48,6 +48,6 @@ val pdfGenerator = InvoiceGenerator(this).apply {
         val fileUri = pdfGenerator.generatePDF("${(0..99999).random()}.pdf")
 ```
 ## Sample
-![](https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif)
+<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif" width="300">
 
   
