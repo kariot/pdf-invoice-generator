@@ -1,7 +1,7 @@
 [![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
 
 # PDF Invoice Generator
-###Android Search Dialog Library
+### PDF Invoice Generator Library
 
 This library uses iText internally to generate PDF file. Custom layout has been implemented to get the look and purpose of an invoice
 
@@ -34,7 +34,7 @@ Before generating an invoice, permission to READ/WRITE external storage should b
 Generate pdf invoice 
 ```
 val pdfGenerator = InvoiceGenerator(this).apply {
-            setInvoiceLogo(R.drawable.invoice_icon)
+            setInvoiceLogo(R.drawable.invoice_icon) 
             setCurrency(currency)
             setInvoiceColor(invoiceColor)
             setInvoiceHeaderData(headerData)
