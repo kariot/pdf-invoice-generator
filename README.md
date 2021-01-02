@@ -34,7 +34,7 @@ Before generating an invoice, permission to READ/WRITE external storage should b
 Generate pdf invoice 
 ```
 val pdfGenerator = InvoiceGenerator(this).apply {
-            setInvoiceLogo(R.drawable.invoice_icon)
+            setInvoiceLogo(R.drawable.invoice_icon) 
             setCurrency(currency)
             setInvoiceColor(invoiceColor)
             setInvoiceHeaderData(headerData)
