@@ -1,5 +1,3 @@
-# pdf-invoice-generator
-
 [![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
 
 # PDF Invoice Generator
@@ -49,6 +47,7 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 
         val fileUri = pdfGenerator.generatePDF("${(0..99999).random()}.pdf")
 ```
-
+## Sample
+[![](https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif)]
 
   
