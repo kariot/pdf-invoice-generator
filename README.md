@@ -137,4 +137,13 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 ## Sample
 <img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif" width="300">   <img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice.jpeg" width="300">
 
-  
+Libraries used in this project
+------------------------------
+
+* [iText ][1]
+* [Dexter][2]
+* [Color Picker][3]
+
+[1]: https://github.com/itext/itextpdf
+[2]: https://github.com/Karumi/Dexter
+[3]: https://github.com/Dhaval2404/ColorPicker
