@@ -88,7 +88,7 @@ class InvoiceGenerator(private val context: Context) {
     }
 
     fun setInvoiceTableHeaderDataSource(tableHeaderDataSource: ModelTableHeader) {
-        this.invoiceTableHeaderDataSource = invoiceTableHeaderDataSource
+        this.invoiceTableHeaderDataSource = tableHeaderDataSource
     }
 
     fun setInvoiceTableData(invoiceTableData: List<ModelInvoiceItem>) {
