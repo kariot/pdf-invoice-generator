@@ -10,7 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.github.dhaval2404.colorpicker.model.ColorSwatch
-import me.kariot.invoicegenerator.data.*
+import me.kariot.invoicegenerator.data.ModelInvoiceFooter
+import me.kariot.invoicegenerator.data.ModelInvoiceHeader
+import me.kariot.invoicegenerator.data.ModelInvoiceInfo
+import me.kariot.invoicegenerator.data.ModelInvoiceItem
+import me.kariot.invoicegenerator.data.ModelInvoicePriceInfo
+import me.kariot.invoicegenerator.data.ModelTableHeader
 import me.kariot.invoicegenerator.databinding.ActivityMainBinding
 import me.kariot.invoicegenerator.utils.InvoiceGenerator
 
@@ -19,6 +24,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var invoiceColor: String
     private var currency = "Rs."
+
+    private val requestStoragePermissions = requestMultiplePermissions { isGranted ->
+        if (isGranted) {
+            createPDFFile()
+        } else {
+            toast("Permissions denied")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
     fun generatePDF(view: View) {
-        Utils.checkStoragePermission(this, {
-            createPDFFile()
-        }, { isPermenentlyDenied ->
-            toast("permissions missing :(")
-        })
-
-
+        requestStoragePermissions.launch(Constants.storagePermission)
     }
 
     private fun createPDFFile() {
