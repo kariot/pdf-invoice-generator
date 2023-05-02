@@ -22,7 +22,7 @@ Add the gradle dependency to your `app` module `build.gradle` file:
 
 ```
 	dependencies {
-	        implementation 'com.github.kariot:pdf-invoice-generator:1.0.0'
+	        implementation 'com.github.kariot:pdf-invoice-generator:1.0.1'
 	}
 
 ```
