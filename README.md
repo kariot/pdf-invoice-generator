@@ -1,55 +1,76 @@
 [![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
+[![Releases](https://img.shields.io/github/release/kariot/pdf-invoice-generator/all.svg?style=flat)](https://github.com/kariot/pdf-invoice-generator/releases)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
+![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
+[![PRWelcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/kariot/pdf-invoice-generator)
 
-# PDF Invoice Generator
-### PDF Invoice Generator Library
+# 🧾 PDF Invoice Generator
 
-This library uses iText internally to generate PDF file. Custom layout has been implemented to get the look and purpose of an invoice
-
-# Setup
-## 1. Provide the gradle dependency
+Pdf Invoice Generator Library for Android. We use iText internally to style format and create pdf files. Which is customised to build invoices for you.
+## Preview
+<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif" width="300">   <img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice.jpeg" width="300">
+## 1. Installation
 
 Add it in your root build.gradle at the end of repositories:
 ```
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
 	}
+}
 ```
 
 Add the gradle dependency to your `app` module `build.gradle` file:
 
 ```
-	dependencies {
-	        implementation 'com.github.kariot:pdf-invoice-generator:1.0.1'
-	}
-
+implementation 'com.github.kariot:pdf-invoice-generator:1.0.1'
 ```
-## 2. Request Permission
-Before generating an invoice, permission to READ/WRITE external storage should be granted by the user to save the generated PDF File
-## 3. Initialization of Data Sources
-The invoice has been splitted into different portions for the convinience to provide data. The different data source. The splitup is shown in the image below
+## 2. Storage & Permissions
+Invoice generator creates and saves pdf files in to the app specific folder ```Android/<YOUR PACKAGE>/files/<FILE NAME>.pdf```, so it will work without any permissions, but you have to configure File Provider for the app.
 
-<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice-guided.jpg" width="300">
+Create ```provider_paths.xml``` inside ```res/xml``` with content
+```
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="external_files" path="."/>
+</paths>
+```
+In ```AndroidManifest.xml``` place the following code inside ```<application>``` tag.
+```
+   <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+```
+## 3. Initialization of Data Sources
+The invoice has been divided into different blocks for the convinience to build the layout and these blocks are shown below. These blocks requires specific set data to build. 
+
+<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice_guided.jpg" width="400">
 
 #### 1. Invoice Header
 Create an instance of ```ModelInvoiceHeader``` to provide data for header.
 eg:
 ```
+val invoiceAddress =ModelInvoiceHeader.ModelAddress(
+                "Address Line 1",
+                "Address Line 2",
+                "Address Line 3"
+            )
 val headerData = ModelInvoiceHeader(
-            "Phone Number",
-            "Email Address",
-            "Web Site",
-	    ModelInvoiceHeader.ModelAddress
-
+            "(123) 456 798",
+            "my_mail@mailer.com",
+            "www.android.com", 
+	    invoiceAddress
         )
 ```
 #### 2. Invoice Icon
-Icon for invoice doesn't need any data class. It can be provided directly via method call while creating PDF file.
-#### 3. Header Address
-The address shown in header has to be provided with this model class. Create an object of ```ModelInvoiceHeader.ModelAddress``` and provide it as the last parameter for ```ModelInvoiceHeader``` object that we created above
-#### 4. Invoice Info
+An icon can be added to the invoice from local resources. Pass the local drawable resource id to ```setInvoiceLogo``` function to add icon.
+#### 3. Invoice Info
 The additional details in invoice such as customer name, invoice number,total price,etc.. has to be provided with ```ModelInvoiceInfo``` object. 
 eg:
 ```
@@ -60,8 +81,8 @@ eg:
             "Invoice Amount"
         )
 ```
-#### 5. Customer Info
-an object of ```ModelInvoiceInfo.ModelCustomerInfo``` has to be provided as parameter as it provides the customer information
+#### 4. Customer Info
+An object of ```ModelInvoiceInfo.ModelCustomerInfo``` has to be provided as parameter as it provides the customer information
 ```
  val customerInfo =
             ModelInvoiceInfo.ModelCustomerInfo(
@@ -114,8 +135,7 @@ eg:
 val footerData = ModelInvoiceFooter("Footer message")
 ```
 ## 4. Generate PDF
-
-To generate a PDF invoice create an instance of ```InvoiceGenerator``` pass required data parameters.
+With all the above mentioned data ready, you can proceed to generate the PDF file. To generate a PDF invoice create an instance of ```InvoiceGenerator``` and pass all the required objects that created on previous step.
 eg:
 ```
 val pdfGenerator = InvoiceGenerator(this).apply {
@@ -134,16 +154,18 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 
         val fileUri = pdfGenerator.generatePDF("FILE_NAME.pdf") // returns pdf file Uri
 ```
-## Sample
-<img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/demo.gif" width="300">   <img src="https://github.com/kariot/pdf-invoice-generator/blob/main/app/src/main/res/raw/invoice.jpeg" width="300">
+## 💥Compatibility
 
-Libraries used in this project
-------------------------------
+  * Library - Android Lollipop 5.0+ (API 21)
+  * Sample - Android Lollipop 5.0+ (API 21)
+  
+## Let us know!
 
-* [iText ][1]
-* [Dexter][2]
-* [Color Picker][3]
+We'll
+We'll be open to your PR, feedback,feature request and issues, please raise an issue if you have encountered any issues or have any feature request. Also We'll be really happy if you sent us links to your projects where you use our library. Just send an email to **sreeharikariot@gmail.com** And do let us know if you have any questions or suggestion regarding the library.
+  
+References
 
-[1]: https://github.com/itext/itextpdf
-[2]: https://github.com/Karumi/Dexter
-[3]: https://github.com/Dhaval2404/ColorPicker
+## 📃 Libraries Used
+* iText [https://github.com/itext/itextpdf](https://github.com/itext/itextpdf)
+* Color Picker [https://github.com/Dhaval2404/ColorPicker](https://github.com/Dhaval2404/ColorPicker)
