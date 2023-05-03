@@ -167,5 +167,5 @@ We'll be open to your PR, feedback,feature request and issues, please raise an i
 References
 
 ## 📃 Libraries Used
-* iText [https://github.com/itext/itextpdf](https://github.com/itext/itextpdf)
-* Color Picker [https://github.com/Dhaval2404/ColorPicker](https://github.com/Dhaval2404/ColorPicker)
+ * iText [https://github.com/itext/itextpdf](https://github.com/itext/itextpdf)
+ * Color Picker [https://github.com/Dhaval2404/ColorPicker](https://github.com/Dhaval2404/ColorPicker)
