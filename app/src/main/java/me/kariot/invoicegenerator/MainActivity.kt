@@ -3,6 +3,7 @@ package me.kariot.invoicegenerator
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -52,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
 
     fun generatePDF(view: View) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            createPDFFile()
+            return
+        }
         requestStoragePermissions.launch(Constants.storagePermission)
     }
 
