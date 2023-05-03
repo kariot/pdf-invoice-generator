@@ -8,11 +8,28 @@ import android.net.Uri
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.itextpdf.text.*
-import com.itextpdf.text.pdf.*
+import com.itextpdf.text.BaseColor
+import com.itextpdf.text.Document
+import com.itextpdf.text.Element
+import com.itextpdf.text.Font
+import com.itextpdf.text.Image
+import com.itextpdf.text.PageSize
+import com.itextpdf.text.Paragraph
+import com.itextpdf.text.Phrase
+import com.itextpdf.text.Rectangle
+import com.itextpdf.text.pdf.BaseFont
+import com.itextpdf.text.pdf.PdfContentByte
+import com.itextpdf.text.pdf.PdfPCell
+import com.itextpdf.text.pdf.PdfPTable
+import com.itextpdf.text.pdf.PdfWriter
 import me.kariot.invoicegenerator.BuildConfig
 import me.kariot.invoicegenerator.R
-import me.kariot.invoicegenerator.data.*
+import me.kariot.invoicegenerator.data.ModelInvoiceFooter
+import me.kariot.invoicegenerator.data.ModelInvoiceHeader
+import me.kariot.invoicegenerator.data.ModelInvoiceInfo
+import me.kariot.invoicegenerator.data.ModelInvoiceItem
+import me.kariot.invoicegenerator.data.ModelInvoicePriceInfo
+import me.kariot.invoicegenerator.data.ModelTableHeader
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -106,7 +123,7 @@ class InvoiceGenerator(private val context: Context) {
     fun setCurrency(currency: String) {
         if (currency.isEmpty()) return
         invoiceCurrency = currency
-        Log.d(TAG,"Currency $currency")
+        Log.d(TAG, "Currency $currency")
     }
 
     fun generatePDF(filename: String): Uri {
@@ -115,7 +132,8 @@ class InvoiceGenerator(private val context: Context) {
             context.getExternalFilesDir(null)
                 .toString() + "/$filename" //location where the pdf will store
         Log.d("loc", outPath)
-        val writer = PdfWriter.getInstance(doc, FileOutputStream(outPath))
+        val file = File(outPath)
+        val writer = PdfWriter.getInstance(doc, FileOutputStream(file))
         doc.open()
         //Header Column Init with width nad no. of columns
         initInvoiceHeader(doc)
@@ -128,7 +146,6 @@ class InvoiceGenerator(private val context: Context) {
         initFooter(doc)
         doc.close()
 
-        val file = File(outPath)
         return FileProvider.getUriForFile(
             context,
             BuildConfig.LIBRARY_PACKAGE_NAME + ".provider",
@@ -148,7 +165,7 @@ class InvoiceGenerator(private val context: Context) {
     private fun initInvoiceHeader(doc: Document) {
         val d = ContextCompat.getDrawable(context, invoiceLogoId)
         val bitDw = d as BitmapDrawable
-        val bmp = Bitmap.createScaledBitmap(bitDw.bitmap,50,50,false)
+        val bmp = Bitmap.createScaledBitmap(bitDw.bitmap, 50, 50, false)
         val stream = ByteArrayOutputStream()
         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream)
         val image = Image.getInstance(stream.toByteArray())
@@ -452,52 +469,52 @@ class InvoiceGenerator(private val context: Context) {
         netAmount.paddingRight = PADDING_EDGE
         titleTable.addCell(netAmount)
         doc.add(titleTable)
-/*
-        doc.add(Paragraph("\n\n\n\n\n")) //adds blank line to place table header below the line
+        /*
+                doc.add(Paragraph("\n\n\n\n\n")) //adds blank line to place table header below the line
 
-        val titleTable = PdfPTable(5)
-        titleTable.isLockedWidth = true
-        titleTable.totalWidth = PageSize.A4.width
-        titleTable.setWidths(tableColumnWidths)
-        appFontBold.color = colorPrimary
+                val titleTable = PdfPTable(5)
+                titleTable.isLockedWidth = true
+                titleTable.totalWidth = PageSize.A4.width
+                titleTable.setWidths(tableColumnWidths)
+                appFontBold.color = colorPrimary
 
-        val itemCell = PdfPCell(Phrase(invoiceTableHeaderDataSource.firstColoumn, appFontBold))
-        itemCell.border = Rectangle.NO_BORDER
-        itemCell.paddingTop = TABLE_TOP_PADDING
-        itemCell.paddingBottom = TABLE_TOP_PADDING
-        itemCell.paddingLeft = PADDING_EDGE
-        titleTable.addCell(itemCell)
+                val itemCell = PdfPCell(Phrase(invoiceTableHeaderDataSource.firstColoumn, appFontBold))
+                itemCell.border = Rectangle.NO_BORDER
+                itemCell.paddingTop = TABLE_TOP_PADDING
+                itemCell.paddingBottom = TABLE_TOP_PADDING
+                itemCell.paddingLeft = PADDING_EDGE
+                titleTable.addCell(itemCell)
 
 
-        val quantityCell = PdfPCell(Phrase(invoiceTableHeaderDataSource.secondColoumn, appFontBold))
-        quantityCell.border = Rectangle.NO_BORDER
-        quantityCell.horizontalAlignment = Rectangle.ALIGN_RIGHT
-        quantityCell.paddingBottom = TABLE_TOP_PADDING
-        quantityCell.paddingTop = TABLE_TOP_PADDING
-        titleTable.addCell(quantityCell)
+                val quantityCell = PdfPCell(Phrase(invoiceTableHeaderDataSource.secondColoumn, appFontBold))
+                quantityCell.border = Rectangle.NO_BORDER
+                quantityCell.horizontalAlignment = Rectangle.ALIGN_RIGHT
+                quantityCell.paddingBottom = TABLE_TOP_PADDING
+                quantityCell.paddingTop = TABLE_TOP_PADDING
+                titleTable.addCell(quantityCell)
 
-        val disAmount = PdfPCell(Phrase(invoiceTableHeaderDataSource.thirdColoumn, appFontBold))
-        disAmount.border = Rectangle.NO_BORDER
-        disAmount.horizontalAlignment = Rectangle.ALIGN_RIGHT
-        disAmount.paddingBottom = TABLE_TOP_PADDING
-        disAmount.paddingTop = TABLE_TOP_PADDING
-        titleTable.addCell(disAmount)
+                val disAmount = PdfPCell(Phrase(invoiceTableHeaderDataSource.thirdColoumn, appFontBold))
+                disAmount.border = Rectangle.NO_BORDER
+                disAmount.horizontalAlignment = Rectangle.ALIGN_RIGHT
+                disAmount.paddingBottom = TABLE_TOP_PADDING
+                disAmount.paddingTop = TABLE_TOP_PADDING
+                titleTable.addCell(disAmount)
 
-        val vat = PdfPCell(Phrase(invoiceTableHeaderDataSource.fourthColoumn, appFontBold))
-        vat.border = Rectangle.NO_BORDER
-        vat.horizontalAlignment = Rectangle.ALIGN_RIGHT
-        vat.paddingBottom = TABLE_TOP_PADDING
-        vat.paddingTop = TABLE_TOP_PADDING
-        titleTable.addCell(vat)
+                val vat = PdfPCell(Phrase(invoiceTableHeaderDataSource.fourthColoumn, appFontBold))
+                vat.border = Rectangle.NO_BORDER
+                vat.horizontalAlignment = Rectangle.ALIGN_RIGHT
+                vat.paddingBottom = TABLE_TOP_PADDING
+                vat.paddingTop = TABLE_TOP_PADDING
+                titleTable.addCell(vat)
 
-        val netAmount = PdfPCell(Phrase(invoiceTableHeaderDataSource.fifthColoumn, appFontBold))
-        netAmount.horizontalAlignment = Rectangle.ALIGN_RIGHT
-        netAmount.border = Rectangle.NO_BORDER
-        netAmount.paddingTop = TABLE_TOP_PADDING
-        netAmount.paddingBottom = TABLE_TOP_PADDING
-        netAmount.paddingRight = PADDING_EDGE
-        titleTable.addCell(netAmount)
-        doc.add(titleTable)*/
+                val netAmount = PdfPCell(Phrase(invoiceTableHeaderDataSource.fifthColoumn, appFontBold))
+                netAmount.horizontalAlignment = Rectangle.ALIGN_RIGHT
+                netAmount.border = Rectangle.NO_BORDER
+                netAmount.paddingTop = TABLE_TOP_PADDING
+                netAmount.paddingBottom = TABLE_TOP_PADDING
+                netAmount.paddingRight = PADDING_EDGE
+                titleTable.addCell(netAmount)
+                doc.add(titleTable)*/
     }
 
     private fun initItemsTable(doc: Document) {
