@@ -163,8 +163,6 @@ val pdfGenerator = InvoiceGenerator(this).apply {
 
 We'll
 We'll be open to your PR, feedback,feature request and issues, please raise an issue if you have encountered any issues or have any feature request. Also We'll be really happy if you sent us links to your projects where you use our library. Just send an email to **sreeharikariot@gmail.com** And do let us know if you have any questions or suggestion regarding the library.
-  
-References
 
 ## 📃 Libraries Used
  * iText [https://github.com/itext/itextpdf](https://github.com/itext/itextpdf)
