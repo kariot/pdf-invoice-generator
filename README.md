@@ -1,4 +1,3 @@
-[![](https://jitpack.io/v/kariot/pdf-invoice-generator.svg)](https://jitpack.io/#kariot/pdf-invoice-generator)
 [![Releases](https://img.shields.io/github/release/kariot/pdf-invoice-generator/all.svg?style=flat)](https://github.com/kariot/pdf-invoice-generator/releases)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 ![Language](https://img.shields.io/badge/language-Kotlin-orange.svg)
